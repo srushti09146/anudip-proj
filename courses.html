@@ -1,0 +1,844 @@
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Courses | ABC Engineering College</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #f5f7fb;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* ================= NAVBAR ================= */
+
+        header {
+            background: #123c69;
+            color: white;
+            padding: 18px 8%;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 25px;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #ffd166;
+        }
+
+        /* ================= HERO ================= */
+
+        .hero {
+            height: 430px;
+
+            background:
+                linear-gradient(
+                    rgba(18, 60, 105, 0.80),
+                    rgba(18, 60, 105, 0.80)
+                ),
+                url("https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1800&q=80");
+
+            background-size: cover;
+            background-position: center;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            text-align: center;
+            color: white;
+            padding: 30px;
+        }
+
+        .hero h1 {
+            font-size: 55px;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            max-width: 750px;
+        }
+
+        /* ================= CONTAINER ================= */
+
+        .container {
+            width: 85%;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        section {
+            padding: 75px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            color: #123c69;
+            font-size: 38px;
+            margin-bottom: 15px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #666;
+            max-width: 750px;
+            margin: 0 auto 45px;
+        }
+
+        /* ================= COURSE GRID ================= */
+
+        .courses {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .course-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+
+            transition: 0.3s;
+        }
+
+        .course-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .course-image {
+            height: 190px;
+            overflow: hidden;
+        }
+
+        .course-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+
+            transition: 0.4s;
+        }
+
+        .course-card:hover img {
+            transform: scale(1.07);
+        }
+
+        .course-content {
+            padding: 25px;
+        }
+
+        .course-content h3 {
+            color: #123c69;
+            font-size: 22px;
+            margin-bottom: 12px;
+        }
+
+        .course-content p {
+            color: #666;
+            font-size: 15px;
+            margin-bottom: 18px;
+        }
+
+        .course-info {
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+        }
+
+        .course-info p {
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+
+        .course-info strong {
+            color: #123c69;
+        }
+
+        /* ================= BUTTON ================= */
+
+        .btn {
+            display: inline-block;
+
+            background: #123c69;
+            color: white;
+
+            padding: 11px 22px;
+            margin-top: 10px;
+
+            border-radius: 6px;
+
+            text-decoration: none;
+            font-weight: bold;
+
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #ffd166;
+            color: #123c69;
+        }
+
+        /* ================= ENGINEERING AREAS ================= */
+
+        .departments {
+            background: #eef3f8;
+        }
+
+        .department-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .department {
+            background: white;
+            padding: 30px;
+            text-align: center;
+
+            border-radius: 12px;
+
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.07);
+
+            transition: 0.3s;
+        }
+
+        .department:hover {
+            transform: translateY(-6px);
+        }
+
+        .department-icon {
+            font-size: 45px;
+            margin-bottom: 12px;
+        }
+
+        .department h3 {
+            color: #123c69;
+            margin-bottom: 8px;
+        }
+
+        .department p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* ================= ADMISSION ================= */
+
+        .admission {
+            background: #123c69;
+            color: white;
+            text-align: center;
+        }
+
+        .admission h2 {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .admission p {
+            max-width: 700px;
+            margin: 0 auto 25px;
+            font-size: 17px;
+        }
+
+        .admission .btn {
+            background: #ffd166;
+            color: #123c69;
+        }
+
+        .admission .btn:hover {
+            background: white;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            background: #0b2948;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        footer p {
+            margin: 7px;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 900px) {
+
+            .courses,
+            .department-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .hero h1 {
+                font-size: 45px;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav a {
+                margin: 0 7px;
+                font-size: 14px;
+            }
+
+            .hero {
+                height: 330px;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .container {
+                width: 90%;
+            }
+
+            .courses,
+            .department-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 30px;
+            }
+        }
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header>
+
+        <div class="logo">
+            ABC Engineering College
+        </div>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="courses.html">Courses</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+
+    </header>
+
+
+    <!-- ================= HERO ================= -->
+
+    <section class="hero">
+
+        <div>
+
+            <h1>Engineering Programs</h1>
+
+            <p>
+                Build your future through innovative engineering education,
+                practical learning and industry-focused skills.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= COURSES ================= -->
+
+    <section>
+
+        <div class="container">
+
+            <h2 class="section-title">
+                Our Engineering Courses
+            </h2>
+
+            <p class="section-subtitle">
+                Explore our undergraduate engineering programs designed
+                to develop technical knowledge, problem-solving abilities
+                and professional skills.
+            </p>
+
+
+            <div class="courses">
+
+
+                <!-- Computer Science -->
+
+                <div class="course-card">
+
+                    <div class="course-image">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=900&q=80"
+                            alt="Computer Science Engineering">
+
+                    </div>
+
+                    <div class="course-content">
+
+                        <h3>Computer Science Engineering</h3>
+
+                        <p>
+                            Learn programming, software development,
+                            databases, computer networks, cloud computing
+                            and modern technologies.
+                        </p>
+
+                        <div class="course-info">
+
+                            <p>
+                                <strong>Degree:</strong> B.Tech / B.E.
+                            </p>
+
+                            <p>
+                                <strong>Duration:</strong> 4 Years
+                            </p>
+
+                        </div>
+
+                        <a href="contact.html" class="btn">
+                            Enquire Now
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <!-- AI & Data Science -->
+
+                <div class="course-card">
+
+                    <div class="course-image">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?auto=format&fit=crop&w=900&q=80"
+                            alt="Artificial Intelligence">
+
+                    </div>
+
+                    <div class="course-content">
+
+                        <h3>AI & Data Science</h3>
+
+                        <p>
+                            Explore artificial intelligence, machine learning,
+                            data analytics, deep learning and intelligent systems.
+                        </p>
+
+                        <div class="course-info">
+
+                            <p>
+                                <strong>Degree:</strong> B.Tech / B.E.
+                            </p>
+
+                            <p>
+                                <strong>Duration:</strong> 4 Years
+                            </p>
+
+                        </div>
+
+                        <a href="contact.html" class="btn">
+                            Enquire Now
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Mechanical -->
+
+                <div class="course-card">
+
+                    <div class="course-image">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=900&q=80"
+                            alt="Mechanical Engineering">
+
+                    </div>
+
+                    <div class="course-content">
+
+                        <h3>Mechanical Engineering</h3>
+
+                        <p>
+                            Study machine design, manufacturing, thermodynamics,
+                            robotics and modern mechanical systems.
+                        </p>
+
+                        <div class="course-info">
+
+                            <p>
+                                <strong>Degree:</strong> B.Tech / B.E.
+                            </p>
+
+                            <p>
+                                <strong>Duration:</strong> 4 Years
+                            </p>
+
+                        </div>
+
+                        <a href="contact.html" class="btn">
+                            Enquire Now
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Civil -->
+
+                <div class="course-card">
+
+                    <div class="course-image">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=900&q=80"
+                            alt="Civil Engineering">
+
+                    </div>
+
+                    <div class="course-content">
+
+                        <h3>Civil Engineering</h3>
+
+                        <p>
+                            Learn structural engineering, construction,
+                            transportation, environmental engineering
+                            and infrastructure design.
+                        </p>
+
+                        <div class="course-info">
+
+                            <p>
+                                <strong>Degree:</strong> B.Tech / B.E.
+                            </p>
+
+                            <p>
+                                <strong>Duration:</strong> 4 Years
+                            </p>
+
+                        </div>
+
+                        <a href="contact.html" class="btn">
+                            Enquire Now
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Electrical -->
+
+                <div class="course-card">
+
+                    <div class="course-image">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=900&q=80"
+                            alt="Electrical Engineering">
+
+                    </div>
+
+                    <div class="course-content">
+
+                        <h3>Electrical Engineering</h3>
+
+                        <p>
+                            Study electrical systems, power generation,
+                            control systems, electronics and renewable energy.
+                        </p>
+
+                        <div class="course-info">
+
+                            <p>
+                                <strong>Degree:</strong> B.Tech / B.E.
+                            </p>
+
+                            <p>
+                                <strong>Duration:</strong> 4 Years
+                            </p>
+
+                        </div>
+
+                        <a href="contact.html" class="btn">
+                            Enquire Now
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <!-- E&TC -->
+
+                <div class="course-card">
+
+                    <div class="course-image">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80"
+                            alt="Electronics Engineering">
+
+                    </div>
+
+                    <div class="course-content">
+
+                        <h3>Electronics & Telecommunication</h3>
+
+                        <p>
+                            Explore electronics, communication systems,
+                            embedded systems, signal processing and IoT.
+                        </p>
+
+                        <div class="course-info">
+
+                            <p>
+                                <strong>Degree:</strong> B.Tech / B.E.
+                            </p>
+
+                            <p>
+                                <strong>Duration:</strong> 4 Years
+                            </p>
+
+                        </div>
+
+                        <a href="contact.html" class="btn">
+                            Enquire Now
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= DEPARTMENTS ================= -->
+
+    <section class="departments">
+
+        <div class="container">
+
+            <h2 class="section-title">
+                Engineering Departments
+            </h2>
+
+            <p class="section-subtitle">
+                Our departments provide students with practical learning,
+                modern laboratories and opportunities to work on real-world
+                engineering projects.
+            </p>
+
+
+            <div class="department-grid">
+
+
+                <div class="department">
+
+                    <div class="department-icon">
+                        💻
+                    </div>
+
+                    <h3>Computer Engineering</h3>
+
+                    <p>
+                        Software, programming, networking and computing.
+                    </p>
+
+                </div>
+
+
+                <div class="department">
+
+                    <div class="department-icon">
+                        🤖
+                    </div>
+
+                    <h3>AI & Data Science</h3>
+
+                    <p>
+                        Artificial intelligence, machine learning and analytics.
+                    </p>
+
+                </div>
+
+
+                <div class="department">
+
+                    <div class="department-icon">
+                        ⚙️
+                    </div>
+
+                    <h3>Mechanical Engineering</h3>
+
+                    <p>
+                        Machines, manufacturing, robotics and design.
+                    </p>
+
+                </div>
+
+
+                <div class="department">
+
+                    <div class="department-icon">
+                        🏗️
+                    </div>
+
+                    <h3>Civil Engineering</h3>
+
+                    <p>
+                        Construction, structures and infrastructure.
+                    </p>
+
+                </div>
+
+
+                <div class="department">
+
+                    <div class="department-icon">
+                        ⚡
+                    </div>
+
+                    <h3>Electrical Engineering</h3>
+
+                    <p>
+                        Power systems, electronics and electrical technology.
+                    </p>
+
+                </div>
+
+
+                <div class="department">
+
+                    <div class="department-icon">
+                        📡
+                    </div>
+
+                    <h3>Electronics & Telecom</h3>
+
+                    <p>
+                        Electronics, communication, IoT and embedded systems.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= ADMISSION ================= -->
+
+    <section class="admission">
+
+        <div class="container">
+
+            <h2>
+                Ready to Build Your Future?
+            </h2>
+
+            <p>
+                Join ABC Engineering College and begin your journey
+                toward becoming the engineer of tomorrow.
+            </p>
+
+            <a href="contact.html" class="btn">
+                Contact Admissions
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <p>
+            <strong>ABC Engineering College</strong>
+        </p>
+
+        <p>
+            123 College Road, Your City, India
+        </p>
+
+        <p>
+            Email: info@abccollege.com |
+            Phone: +91 98765 43210
+        </p>
+
+        <p>
+            © 2026 ABC Engineering College. All Rights Reserved.
+        </p>
+
+    </footer>
+
+
+</body>
+
+</html>
+```
